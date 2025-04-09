@@ -4,24 +4,28 @@ local isfile = isfile or function(file)
 	end)
 	return suc and res ~= nil and res ~= ''
 end
+
 local delfile = delfile or function(file)
 	writefile(file, '')
 end
 
-local function downloadFile(path, func)
+local function downloadFile(path)
 	if not isfile(path) then
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/pasted0/PastedForRoblox/'..readfile('newvape/profiles/commit.txt')..'/'..select(1, path:gsub('newvape/', '')), true)
+			local newPath = path:gsub("^newvape/", "")
+			print(newPath)
+			return game:HttpGet("https://raw.githubusercontent.com/pasted0/PastedForRoblox/main/" .. newPath)
 		end)
 		if not suc or res == '404: Not Found' then
 			error(res)
 		end
 		if path:find('.lua') then
 			res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n'..res
+			writefile(path, res)
 		end
-		writefile(path, res)
+		return res
 	end
-	return (func or readfile)(path)
+	return readfile(path)
 end
 
 local function wipeFolder(path)
@@ -56,4 +60,12 @@ if not shared.VapeDeveloper then
 	writefile('newvape/profiles/commit.txt', commit)
 end
 
-return loadstring(downloadFile('newvape/main.lua'), 'main')()
+local suc, res = pcall(function() return downloadFile('newvape/main.lua') end)
+print(res)
+if suc and res and res ~= "" then
+	loadstring(res)()
+else
+	error(res)
+end
+
+task.wait()
