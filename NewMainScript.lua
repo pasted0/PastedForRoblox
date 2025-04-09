@@ -61,7 +61,7 @@ if not shared.VapeDeveloper then
 end
 
 local suc, res = pcall(function() return downloadFile('newvape/main.lua') end)
-print(res)
+
 if suc and res and res ~= "" then
 	loadstring(res)()
 else
