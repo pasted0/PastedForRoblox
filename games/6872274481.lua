@@ -1,3 +1,4 @@
+print("apple")
 local run = function(func)
 	func()
 end
