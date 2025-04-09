@@ -1,5 +1,5 @@
 print("apple")
---[[
+
 local run = function(func)
 	func()
 end
@@ -838,22 +838,17 @@ run(function()
 	--[[
 		Pathfinding using a luau version of dijkstra's algorithm
 		Source: https://stackoverflow.com/questions/39355587/speeding-up-dijkstras-algorithm-to-solve-a-3d-maze
-	]]
-	--[[
+	]]--
 	local function calculatePath(target, blockpos)
 		if cache[blockpos] then
 			return unpack(cache[blockpos])
 		end
 		local visited, unvisited, distances, air, path = {}, {{0, blockpos}}, {[blockpos] = 0}, {}, {}
-]]--
---[[
 		for _ = 1, 10000 do
 			local _, node = next(unvisited)
 			if not node then break end
 			table.remove(unvisited, 1)
-			]]--
-			--visited[node[2]] = true
---[[
+			visited[node[2]] = true
 			for _, side in sides do
 				side = node[2] + side
 				if visited[side] then continue end
@@ -861,9 +856,7 @@ run(function()
 				local block = getPlacedBlock(side)
 				if not block or block:GetAttribute('NoBreak') or block == target then
 					if not block then
-					]]--
-						--air[node[2]] = true
-						--[[
+						air[node[2]] = true
 					end
 					continue
 				end
@@ -5590,9 +5583,8 @@ run(function()
 		if suc and read then
 			local items = {}
 			for _, v in read do 
-			]]--
-				--items[v[2]] = (items[v[2]] or 0) + 1 
-			--[[
+			
+				items[v[2]] = (items[v[2]] or 0) + 1 
 			end
 			
 			for i, v in items do
@@ -5962,9 +5954,7 @@ run(function()
 		for i = tool, #tools do
 			local v = bedwars.Shop.getShopItem(tools[i], lplr)
 			if canBuy(v, currencytable) then
-			]]--
-				--if SmartCheck.Enabled and bedwars.ItemMeta[tools[i]].breakBlock and i > 2 then
-				--[[
+				if SmartCheck.Enabled and bedwars.ItemMeta[tools[i]].breakBlock and i > 2 then
 					if Armor.Enabled then
 						local currentarmor = store.inventory.inventory.armor[2]
 						currentarmor = currentarmor and currentarmor ~= 'empty' and currentarmor.itemType or 'none'
@@ -8086,9 +8076,7 @@ run(function()
 			table.clear(soundlist)
 			for _, entry in List.ListEnabled do
 				local split = entry:split('/')
-				]]--
-				--local id = bedwars.SoundList[split[1]]
-				--[[
+				local id = bedwars.SoundList[split[1]]
 				if id and #split > 1 then
 					soundlist[id] = split[2]:find('rbxasset') and split[2] or isfile(split[2]) and assetfunction(split[2]) or ''
 				end
@@ -8389,4 +8377,3 @@ run(function()
 		List = WinEffectName
 	})
 end)
-]]--
