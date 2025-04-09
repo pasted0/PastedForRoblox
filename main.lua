@@ -114,4 +114,5 @@ if not shared.VapeIndependent then
 else
 	vape.Init = finishLoading
 	return vape
-endend
+--endend -- peak xylex
+end
