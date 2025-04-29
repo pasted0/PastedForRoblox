@@ -4488,7 +4488,7 @@ run(function()
 						sendMessage('BedDestroyed', (bedTable.player.DisplayName or bedTable.player.Name), 'how dare you >:( | <obj>')
 					elseif Toggles.Bed.Enabled and bedTable.player.UserId == lplr.UserId then
 						local team = bedwars.QueueMeta[store.queueType].teams[tonumber(bedTable.brokenBedTeam.id)]
-						sendMessage('Bed', team and team.displayName:lower() or 'white', 'nice bed lul | <obj>')
+						sendMessage('Bed', team and team.displayName:lower() or 'white', '<obj> team lost their bed because they werent using | pasted')
 					end
 				end))
 				AutoToxic:Clean(vapeEvents.EntityDeathEvent.Event:Connect(function(deathTable)
@@ -4502,7 +4502,7 @@ run(function()
 								sendMessage('Death', (killer.DisplayName or killer.Name), 'my gaming chair subscription expired :( | <obj>')
 							end
 						elseif killer == lplr and Toggles.Kill.Enabled then
-							sendMessage('Kill', (killed.DisplayName or killed.Name), 'vxp on top | <obj>')
+							sendMessage('Kill', (killed.DisplayName or killed.Name), '<obj> failed to use | pasted')
 						end
 					end
 				end))
@@ -4518,7 +4518,7 @@ run(function()
 					local myTeam = bedwars.Store:getState().Game.myTeam
 					if myTeam and myTeam.id == winstuff.winningTeamId or lplr.Neutral then
 						if Toggles.Win.Enabled then 
-							sendMessage('Win', nil, 'yall garbage') 
+							sendMessage('Win', nil, 'ggez i own yall pasted on top') 
 						end
 					end
 				end))
@@ -8254,7 +8254,7 @@ run(function()
 	})
 end)
 
-local broken = false
+local broken = true
 vape.Categories.Blatant:CreateModule({
   Name = "Remote-Spam",
   Function = function(call)
