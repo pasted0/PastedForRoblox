@@ -8259,10 +8259,8 @@ vape.Categories.Blatant:CreateModule({
   Name = "Remote-Spam",
   Function = function(call)
     broken = call
-    print(broken)
-    print(call)
     while task.wait(1) do
-      if broken then
+      if not broken then
         break
       end
       
