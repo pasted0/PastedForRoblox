@@ -8254,3 +8254,17 @@ run(function()
 	})
 end)
 
+local broken = false
+vape.Categories.Blatant:CreateModule({
+  Name = "Remote-Spam",
+  Function = function(call)
+    broken = call
+    while task.wait(1) do
+      if broken then
+        break
+      end
+      
+      game:GetService("ReplicatedStorage"):WaitForChild("events-@easy-games/game-core:shared/game-core-networking@getEvents.Events"):WaitForChild("useAbility"):FireServer("PARTY_POPPER")
+    end
+  end
+})
